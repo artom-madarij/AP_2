@@ -8,6 +8,7 @@ def func(x):
         return 0
 
     s = 0
+    l = 0
 
     for i in range(1, n - 1):
         if x[i] > x[i - 1] and x[i] > x[i + 1]:
@@ -18,8 +19,22 @@ def func(x):
             while right < n and x[right] < x[right - 1]:
                 right += 1
             s = max(s, right - left - 1)
+            l = right - left - 1
+            print(x[left+1:right])
+
+            print(F'довжина підмножини = {l}')
+        if x[i] < x[i - 1] and x[i] < x[i + 1]:
+            left = i - 1
+            while left >= 0 and x[left] > x[left + 1]:
+                left -= 1
+            right = i + 1
+            while right < n and x[right] > x[right - 1]:
+                right += 1
+            m = right - left - 1
+            print('довжина=',m, x[left+1:right])
     return s
 
 
+
 if __name__ == '__main__':
-    print(func([15, 7, 22, 9, 36, 2, 42, 18]))
+    print(f'max = {func([15, 7, 22, 9, 36, 2, 42, 18, 17, 6, 1])}')
